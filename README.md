@@ -12,7 +12,7 @@ Install VC_Redist 2015-19 from [here](https://aka.ms/vs/16/release/vc_redist.x64
 Open a Windows Terminal instance.
 
 ```
-winget install python
+winget install python pip
 pip install torch matplotlib numpy pygame
 ```
 
