@@ -155,30 +155,30 @@ def train():
     plot_mean_scores = []
     total_score = 0
     record = 0
-    agent = Agent()
-    game = SnakeGameAI()
+    agent =                                     # Instantiate your Agent class here
+    game =                                      # Instantiate your SnakeGameAI class here
     while True:
         # get old state
-        state_old = agent.get_state(game)
-        
-        steps_to_food = agent.bfs(game.snake[0], game)
-        danger_old=agent.avg_danger(game)
+        state_old =                             # Use agent method to get the state from the game
+
+        steps_to_food =                         # Use agent method to calculate steps to food
+        danger_old =                            # Use agent method to calculate average danger
 
         # get move
-        final_move = agent.get_action(state_old)
+        final_move =                            # Use agent method to get action based on the state
 
         # perform move and get new state
-        reward, done, score = game.play_step(final_move)
-        state_new = agent.get_state(game)
+        reward, done, score =                   # Use game method to play a step and get results
+        state_new =                             # Use agent method to get the new state from the game
 
-        steps_to_food_new = agent.bfs(game.snake[0], game)
-        danger_new=agent.avg_danger(game)
+        steps_to_food_new =                     # Use agent method to calculate steps to food for new state
+        danger_new =                            # Use agent method to calculate average danger for new state
 
         # train short memory
-        agent.train_short_memory(state_old, final_move, reward, state_new, done, steps_to_food, steps_to_food_new, danger_old, danger_new)
+        agent.train_short_memory()              # Pass the required parameters
 
         # remember
-        agent.remember(state_old, final_move, reward, state_new, done, steps_to_food, steps_to_food_new, danger_old, danger_new)
+        agent.remember()                        # Pass the required parameters
 
         if done:
             # train long memory, plot result
@@ -197,6 +197,7 @@ def train():
             mean_score = total_score / agent.n_games
             plot_mean_scores.append(mean_score)
             plot(plot_scores, plot_mean_scores)
+
 
 
 if __name__ == '__main__':
